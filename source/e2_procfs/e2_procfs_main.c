@@ -85,9 +85,10 @@ struct ProcStructure_s e2Proc[] =
 	{cProcEntry, "stb/fp/led0_pattern"                                              , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/fp/led_pattern_speed"                                         , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/fp/version"                                                   , NULL, e2procfs_fpver_show, NULL, NULL, ""},
-	{cProcEntry, "stb/fp/wakeup_time"                                               , NULL, e2procfs_fpwut_show, e2procfs_fpwut_write, NULL, ""},
-	{cProcEntry, "stb/fp/was_timer_wakeup"                                          , NULL, e2procfs_fpwtw_show, e2procfs_fpwtw_write, NULL, ""},
-	{cProcEntry, "stb/fp/rtc"                                                       , NULL, e2procfs_fprtc_show, e2procfs_fprtc_write, NULL, ""},
+	//rtc is disabled for now because it causes segmentation fault
+	// {cProcEntry, "stb/fp/wakeup_time"                                               , NULL, e2procfs_fpwut_show, e2procfs_fpwut_write, NULL, ""},
+	// {cProcEntry, "stb/fp/was_timer_wakeup"                                          , NULL, e2procfs_fpwtw_show, e2procfs_fpwtw_write, NULL, ""},
+	// {cProcEntry, "stb/fp/rtc"                                                       , NULL, e2procfs_fprtc_show, e2procfs_fprtc_write, NULL, ""},
 
 	{cProcDir  , "stb/tsmux"                                                        , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/tsmux/input0"                                                 , NULL, NULL, NULL, NULL, ""},
@@ -127,7 +128,7 @@ struct ProcStructure_s e2Proc[] =
 	{cProcEntry, "stb/hdmi/enable_hdmi_resets"                                      , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/hdmi/output"                                                  , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/hdmi/output_choices"                                          , NULL, NULL, NULL, NULL, ""},
-	{cProcEntry, "stb/hdmi/audio_source"                                            , NULL, NULL, NULL, NULL, ""},
+//	{cProcEntry, "stb/hdmi/audio_source"                                            , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/hdmi/audio_source_choices"                                    , NULL, NULL, NULL, NULL, ""},
 
 	{cProcDir,   "stb/stream"                                                       , NULL, NULL, NULL, NULL, ""},
@@ -402,6 +403,9 @@ static void __exit e2procfs_cleanup_module(void)
 	//	save_data_to_file("/storage/kernel.txt", O_RDWR | O_CREAT | O_APPEND, buffer, bytes);
 	}
 }
-
+MODULE_AUTHOR("SIP-Online");
+MODULE_DESCRIPTION("procfs module with enigma2 support");
+MODULE_LICENSE("GPL");
+MODULE_VERSION("1.0.0");
 module_init(e2procfs_init_module);
 module_exit(e2procfs_cleanup_module);

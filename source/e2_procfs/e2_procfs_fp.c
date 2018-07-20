@@ -25,14 +25,14 @@
 
 #define RTC_GPO_COUNTER_ADDR		1
 
-typedef struct alarm_data_s {
+ struct alarm_data_s {
 	int level;
 	unsigned alarm_sec;   //in s
 } alarm_data_t;
 
 unsigned int ser_access_read(unsigned long addr);
 int ser_access_write(unsigned long addr, unsigned long data);
-int rtc_set_alarm_aml(struct device *dev, alarm_data_t *alarm_data);
+int rtc_set_alarm_aml(struct device *dev, struct alarm_data_s *alarm_data);
 
 int e2procfs_fpver_show(struct seq_file *m, void* data)
 {
@@ -82,7 +82,7 @@ int e2procfs_fpwut_show(struct seq_file *m, void* data)
 
 int e2procfs_fpwut_write(struct ProcWriteInfo *proc_info, char *kbuf)
 {
-	alarm_data_t alarm_data;
+	struct alarm_data_s alarm_data;
 	int len = 0;
 	unsigned long wut, v8;
 	unsigned int sa_read;

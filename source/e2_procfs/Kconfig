@@ -1,0 +1,10 @@
+menu "Enigma2 procfs"
+
+config E2PROCFS
+        tristate "enigma2 procfs"
+        default M
+        select DVB_CORE
+        select AML_RTC
+        help
+                Select to enable enigma2 procfs.
+endmenu

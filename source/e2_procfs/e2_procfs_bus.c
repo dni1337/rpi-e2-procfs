@@ -28,107 +28,116 @@
 
 int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
 {
-	struct file* fe_fd = NULL;
-	int adapter_num = 0, nsocket_index = 0, len = 0;
-	char devstr[MAX_CHAR_LENGTH];
-	struct
-	{
-		int type;
-		char *pType;
-	} typeMap[] = {
-/*
-		{ FE_QPSK,	"DVB-S2" },
-		{ FE_QAM,	"DVB-C" },
-		{ FE_OFDM,	"DVB-T" },
-		{ FE_ATSC,	"ATSC" }
-*/
-		{ SYS_UNDEFINED,	"UNDEFINED" },
-		{ SYS_DVBC_ANNEX_A,	"DVB-C ann.A" },
-		{ SYS_DVBC_ANNEX_B,	"DVB-C ann.B" },
-		{ SYS_DVBT,			"DVB-T" },
-		{ SYS_DSS,			"DSS" },
-		{ SYS_DVBS,			"DVB-S" },
-		{ SYS_DVBS2,		"DVB-S2" },
-		{ SYS_DVBH,			"DVB-H" },
-		{ SYS_ISDBT,		"ISDB-T" },
-		{ SYS_ISDBS,		"ISDB-S" },
-		{ SYS_ISDBC,		"ISDB-C" },
-		{ SYS_ATSC,			"ATSC" },
-		{ SYS_ATSCMH,		"ATSC/MH" },
-		{ SYS_DTMB,			"DTMB" },
-		{ SYS_CMMB,			"CMMB" },
-		{ SYS_DAB,			"DAB" },
-		{ SYS_DVBT2,		"DVB-T2" },
-		{ SYS_TURBO,		"TURBO-FEC" },
-		{ SYS_DVBC_ANNEX_C,	"DVB-C ann.C" }
-	};
+	int len=0;
+	len += seq_printf(m,
+		"NIM Socket 0:\n"
+		"\tType: DVB-T\n"
+		"\tName: Availink avl6862\n"
+		"\tHas_Outputs: no\n"
+		"\tFrontend_Device: 0\n"
+		);
 
-	while (adapter_num < DVB_MAX_ADAPTERS)
-	{
-		int frontend_num = 0;
+// 	struct file* fe_fd = NULL;
+// 	int adapter_num = 0, nsocket_index = 0, len = 0;
+// 	char devstr[MAX_CHAR_LENGTH];
+// 	struct
+// 	{
+// 		int type;
+// 		char *pType;
+// 	} typeMap[] = {
+// /*
+// 		{ FE_QPSK,	"DVB-S2" },
+// 		{ FE_QAM,	"DVB-C" },
+// 		{ FE_OFDM,	"DVB-T" },
+// 		{ FE_ATSC,	"ATSC" }
+// */
+// 		{ SYS_UNDEFINED,	"UNDEFINED" },
+// 		{ SYS_DVBC_ANNEX_A,	"DVB-C ann.A" },
+// 		{ SYS_DVBC_ANNEX_B,	"DVB-C ann.B" },
+// 		{ SYS_DVBT,			"DVB-T" },
+// 		{ SYS_DSS,			"DSS" },
+// 		{ SYS_DVBS,			"DVB-S" },
+// 		{ SYS_DVBS2,		"DVB-S2" },
+// 		{ SYS_DVBH,			"DVB-H" },
+// 		{ SYS_ISDBT,		"ISDB-T" },
+// 		{ SYS_ISDBS,		"ISDB-S" },
+// 		{ SYS_ISDBC,		"ISDB-C" },
+// 		{ SYS_ATSC,			"ATSC" },
+// 		{ SYS_ATSCMH,		"ATSC/MH" },
+// 		{ SYS_DTMB,			"DTMB" },
+// 		{ SYS_CMMB,			"CMMB" },
+// 		{ SYS_DAB,			"DAB" },
+// 		{ SYS_DVBT2,		"DVB-T2" },
+// 		{ SYS_TURBO,		"TURBO-FEC" },
+// 		{ SYS_DVBC_ANNEX_C,	"DVB-C ann.C" }
+// 	};
 
-		while (frontend_num < DVB_MAX_FRONTEND)
-		{
-			int bytes = 0, nsocket_i = 0;
+// 	while (adapter_num < DVB_MAX_ADAPTERS)
+// 	{
+// 		int frontend_num = 0;
 
-			bytes = sprintf(devstr, "/dev/dvb/adapter%d/frontend%d", adapter_num, frontend_num);
+// 		while (frontend_num < DVB_MAX_FRONTEND)
+// 		{
+// 			int bytes = 0, nsocket_i = 0;
 
-			fe_fd = file_open(devstr, O_RDONLY, bytes);
+// 			bytes = sprintf(devstr, "/dev/dvb/adapter%d/frontend%d", adapter_num, frontend_num);
 
-			if (fe_fd != NULL)
-			{
-				struct dvb_device *dvbdev = fe_fd->private_data;
-				struct dvb_frontend_info fe_info;
-				struct dtv_property p[] = {{ .cmd = DTV_DELIVERY_SYSTEM }};
-				struct dtv_properties cmdseq = { .num = 1, .props = p };
-				char *p_type = "unknown";
+// 			fe_fd = file_open(devstr, O_RDONLY, bytes);
 
-				if (dvb_generic_ioctl(fe_fd, FE_GET_INFO, 0))
-				{
-					dvbdev->kernel_ioctl(fe_fd, FE_GET_INFO, &fe_info);
+// 			if (fe_fd != NULL)
+// 			{
+// 				struct dvb_device *dvbdev = fe_fd->private_data;
+// 				struct dvb_frontend_info fe_info;
+// 				struct dtv_property p[] = {{ .cmd = DTV_DELIVERY_SYSTEM }};
+// 				struct dtv_properties cmdseq = { .num = 1, .props = p };
+// 				char *p_type = "unknown";
 
-					if (dvb_generic_ioctl(fe_fd, FE_GET_PROPERTY, 0))
-					{
-						dvbdev->kernel_ioctl(fe_fd, FE_GET_PROPERTY, &cmdseq);
+// 				if (dvb_generic_ioctl(fe_fd, FE_GET_INFO, 0))
+// 				{
+// 					dvbdev->kernel_ioctl(fe_fd, FE_GET_INFO, &fe_info);
 
-						for (nsocket_i = 0; nsocket_i < sizeof(typeMap) / sizeof(typeMap[0]); nsocket_i++)
-						{
-							if (p->u.data == typeMap[nsocket_i].type)
-							{
-								p_type = typeMap[nsocket_i].pType;
+// 					if (dvb_generic_ioctl(fe_fd, FE_GET_PROPERTY, 0))
+// 					{
+// 						dvbdev->kernel_ioctl(fe_fd, FE_GET_PROPERTY, &cmdseq);
 
-								break;
-							}
-						}
+// 						for (nsocket_i = 0; nsocket_i < sizeof(typeMap) / sizeof(typeMap[0]); nsocket_i++)
+// 						{
+// 							if (p->u.data == typeMap[nsocket_i].type)
+// 							{
+// 								p_type = typeMap[nsocket_i].pType;
 
-						len += seq_printf(
-							m,
-								"NIM Socket %d:\n"
-								"\tType: %s\n"
-								"\tName: %s\n"
-							//	"\tHas_Outputs: no\n"
-							//	"\tInternally_Connectable: 0\n"
-								"\tFrontend_Device: %d\n"
-							//	"\tI2C_Device: -1\n"
-							,
-							nsocket_index,
-							p_type,
-							fe_info.name,
-							frontend_num
-						);
+// 								break;
+// 							}
+// 						}
 
-						nsocket_index++;
-					}
-				}
-			}
+// 						len += seq_printf(
+// 							m,
+// 								"NIM Socket %d:\n"
+// 								"\tType: %s\n"
+// 								"\tName: %s\n"
+// 							//	"\tHas_Outputs: no\n"
+// 							//	"\tInternally_Connectable: 0\n"
+// 								"\tFrontend_Device: %d\n"
+// 							//	"\tI2C_Device: -1\n"
+// 							,
+// 							nsocket_index,
+// 							p_type,
+// 							fe_info.name,
+// 							frontend_num
+// 						);
 
-			frontend_num++;
+// 						nsocket_index++;
+// 					}
+// 				}
+// 			}
 
-			file_close(fe_fd);
-		}
+// 			frontend_num++;
 
-		adapter_num++;
-	}
+// 			file_close(fe_fd);
+// 		}
+
+// 		adapter_num++;
+// 	}
 
 	return len;
 }

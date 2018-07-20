@@ -1,5 +1,5 @@
-KERNEL_VERSION	:= `uname -r`
-KERNEL_DIR	:= /lib/modules/$(KERNEL_VERSION)/build
+# KERNEL_VERSION	:= `uname -r`
+# KERNEL_DIR	:= /lib/modules/$(KERNEL_VERSION)/build
 PWD		:= $(shell pwd)
 
 ifeq ($(KERNELRELEASE),)
@@ -21,9 +21,9 @@ clean: $(clean_more)
 else
 EXTRA_CFLAGS += -Werror -Wenum-compare
 ccflags-y += -D__CHECK_ENDIAN__
-ccflags-y += -I$(srctree)/drivers/media/dvb-core
+ccflags-y += -I$(srctree)/drivers/media/dvb-core -I$(srctree)/drivers/amlogic
 
-e2_procfs-y += \
+e2_procfs-y := \
 	e2_procfs_amlinfo.o \
 	e2_procfs_bus.o \
 	e2_procfs_denc.o \

@@ -201,11 +201,10 @@
 #include <linux/proc_fs.h>
 #include <linux/delay.h>
 #include <asm/uaccess.h>
+#include <linux/platform_device.h>
 
-MODULE_AUTHOR("SIP-Online");
-MODULE_DESCRIPTION("procfs module with enigma2 support");
-MODULE_LICENSE("GPL");
-MODULE_VERSION("1.0.0");
+
+//extern int rtc_set_alarm_aml(struct device *dev,struct alarm_data_s *alarm_data);
 
 #define MAX_CHAR_LENGTH 256
 #define cProcDir	1

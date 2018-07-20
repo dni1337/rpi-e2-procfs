@@ -101,7 +101,7 @@ int remove_file(char *path)
 		return -EACCES;
 	}
 
-	vfs_unlink(ndpath.dentry->d_inode, dentry);
+	vfs_unlink(ndpath.dentry->d_inode, dentry,NULL);
 	dput(dentry);
 
 	set_fs(oldfs);

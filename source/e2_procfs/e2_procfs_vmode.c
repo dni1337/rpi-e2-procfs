@@ -20,9 +20,9 @@
  */
 
 #include "e2_procfs.h"
-#include <linux/amlogic/osd/osd_dev.h>
-
-extern int wetekfb_set_display(char *);
+#include "display/osd/osd_hw.h"
+#include <linux/amlogic/vout/vinfo.h>
+#include <linux/amlogic/vout/vout_notify.h>
 
 int e2procfs_valpha_show(struct seq_file *m, void* data)
 {
@@ -51,7 +51,7 @@ int e2procfs_valpha_write(struct ProcWriteInfo *proc_info, char *kbuf)
 	if (kstrtouint(kbuf, 0, &gbl_alpha))
 		return -EINVAL;
 
-	osddev_set_gbl_alpha(0, gbl_alpha);
+	osd_set_gbl_alpha_hw(0, gbl_alpha);
 
 	return len;
 }
@@ -59,7 +59,8 @@ int e2procfs_valpha_write(struct ProcWriteInfo *proc_info, char *kbuf)
 int e2procfs_vmode_show(struct seq_file *m, void* data)
 {
 	int len;
-	const vinfo_t *vinfo;
+	//const vinfo_t *vinfo;
+	struct vinfo_s *vinfo;
 
 	vinfo = get_current_vinfo();
 
@@ -85,7 +86,8 @@ int e2procfs_vmode_show(struct seq_file *m, void* data)
 int e2procfs_vmode_write(struct ProcWriteInfo *proc_info, char *kbuf)
 {
 	int len = 0, ret;
-	vmode_t mode;
+	//vmode_t mode;
+	enum vmode_e mode;
 
 	proc_info->bpage = kbuf;
 
@@ -106,7 +108,8 @@ int e2procfs_vmode_write(struct ProcWriteInfo *proc_info, char *kbuf)
 	else if (mode != get_current_vmode())
 	{
 		msleep(500);
-		wetekfb_set_display(kbuf);
+		set_current_vmode(mode);
+		printk(kbuf);
 	}
 
 	return len;
@@ -164,7 +167,7 @@ int e2procfs_vachoices_show(struct seq_file *m, void* data)
 int e2procfs_vaspect_show(struct seq_file *m, void* data)
 {
 	int len;
-	const vinfo_t *vinfo;
+	const struct vinfo_s *vinfo;
 
 	vinfo = get_current_vinfo();
 

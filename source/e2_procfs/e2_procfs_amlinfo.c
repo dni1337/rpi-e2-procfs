@@ -20,14 +20,17 @@
  */
 
 #include "e2_procfs.h"
-#include <linux/amlogic/osd/osd_dev.h>
+#include "display/osd/osd_hw.h"
+#include <linux/amlogic/vout/vinfo.h>
+#include <linux/amlogic/vout/vout_notify.h>
 #include <linux/amlogic/ppmgr/ppmgr_status.h>
 #include <linux/amlogic/amports/tsync.h>
 
 int e2procfs_amlinfo_show(struct seq_file *m, void* data)
 {
 	struct ProcWriteInfo *proc_info = m->private;
-	const vinfo_t *vinfo;
+	//const vinfo_s *vinfo;
+	struct vinfo_s *vinfo;
 	int len = 0;
 
 	vinfo = get_current_vinfo();
@@ -51,7 +54,7 @@ int e2procfs_amlinfo_show(struct seq_file *m, void* data)
 	len += seq_printf(m, "video_clk:%d\n", vinfo->video_clk);
 
 	len += seq_printf(m, "get_use_prot:%d\n", get_use_prot());
-	len += seq_printf(m, "tsync_get_enable:%d\n", tsync_get_enable());
+	//len += seq_printf(m, "tsync_get_enable:%d\n", tsync_get_enable());
 	len += seq_printf(m, "tsync_get_mode:%d\n", tsync_get_mode());
 	len += seq_printf(m, "tsync_get_sync_adiscont:%d\n", tsync_get_sync_adiscont());
 	len += seq_printf(m, "tsync_get_sync_vdiscont:%d\n", tsync_get_sync_vdiscont());
@@ -81,37 +84,37 @@ int e2procfs_amlosd_show(struct seq_file *m, void* data)
 	int len = 0;
 	int x, y, w, h;
 	int x0, y0, x1, y1;
-	int x_start, y_start, x_end, y_end;
+	//int x_start, y_start, x_end, y_end;
 	unsigned int free_scale_enable = 0;
 	unsigned int free_scale_mode = 0;
 	unsigned int free_scale_width = 0;
 	unsigned int free_scale_height = 0;
-	unsigned int osd_antiflicker = 0;
+	//unsigned int osd_antiflicker = 0;
 
-	osddev_get_free_scale_enable(0, &free_scale_enable);
-	osddev_get_free_scale_mode(0, &free_scale_mode);
+	osd_get_free_scale_enable_hw(0, &free_scale_enable);
+	osd_get_free_scale_mode_hw(0, &free_scale_mode);
 	len += seq_printf(m, "osddev_get_free_scale_enable:%d\n", free_scale_enable);
 	len += seq_printf(m, "osddev_get_free_scale_mode:%d\n", free_scale_mode);
 
-	osddev_get_free_scale_width(0, &free_scale_width);
-	osddev_get_free_scale_height(0, &free_scale_height);
+	osd_get_free_scale_width_hw(0, &free_scale_width);
+	osd_get_free_scale_height_hw(0, &free_scale_height);
 	len += seq_printf(m, "osddev_get_free_scale_width:%d\n", free_scale_width);
 	len += seq_printf(m, "osddev_get_free_scale_height:%d\n", free_scale_height);
 
-	osddev_get_free_scale_axis(0, &x, &y, &w, &h);
+	osd_get_free_scale_axis_hw(0, &x, &y, &w, &h);
 	len += seq_printf(m, "free_scale_axis:%d %d %d %d\n", x, y, w, h);
 
-	osddev_get_scale_axis(0, &x0, &y0, &x1, &y1);
+	osd_get_scale_axis_hw(0, &x0, &y0, &x1, &y1);
 	len += seq_printf(m, "scale_axis:%d %d %d %d\n", x0, y0, x1, y1);
-	osddev_get_window_axis(0, &x0, &y0, &x1, &y1);
+	osd_get_window_axis_hw(0, &x0, &y0, &x1, &y1);
 	len += seq_printf(m, "window_axis:%d %d %d %d\n", x0, y0, x1, y1);
-	osddev_get_osd_antiflicker(0, &osd_antiflicker);
-	len += seq_printf(m, "osddev_get_osd_antiflicker:%d\n", osd_antiflicker);
+	// osd_get_osd_antiflicker(0, &osd_antiflicker);
+	// len += seq_printf(m, "osddev_get_osd_antiflicker:%d\n", osd_antiflicker);
 
-	osddev_get_prot_canvas(0, &x_start, &y_start, &x_end, &y_end);
-	len += seq_printf(m, "prot_canvas:%d %d %d %d\n", x_start, y_start, x_end, y_end);
+	// osd_get_prot_canvas(0, &x_start, &y_start, &x_end, &y_end);
+	// len += seq_printf(m, "prot_canvas:%d %d %d %d\n", x_start, y_start, x_end, y_end);
 
-	len += seq_printf(m, "gbl_alpha:%d\n", osddev_get_gbl_alpha(0));
+	len += seq_printf(m, "gbl_alpha:%d\n", osd_get_gbl_alpha_hw(0));
 
 	return len;
 }
@@ -128,7 +131,7 @@ int e2procfs_amlosd_write(struct ProcWriteInfo *proc_info, char *kbuf)
 	if (kstrtouint(kbuf, 0, &gbl_alpha))
 		return -EINVAL;
 
-	osddev_set_gbl_alpha(0, gbl_alpha);
+	osd_set_gbl_alpha_hw(0, gbl_alpha);
 
 	return len;
 }

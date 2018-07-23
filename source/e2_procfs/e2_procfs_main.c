@@ -34,6 +34,11 @@ struct ProcStructure_s e2Proc[] =
 	{cProcEntry, "stb/audio/j1_mute"                                                , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/audio/ac3_choices"                                            , NULL, NULL, NULL, NULL, ""},
 
+
+	{cProcDir  , "stb/frontend" 		                                            , NULL, NULL, NULL, NULL, ""},
+	{cProcDir  , "stb/frontend/0"                                                   , NULL, NULL, NULL, NULL, ""},
+	{cProcEntry, "stb/frontend/0/mode"                                              , NULL, e2procfs_frontend_mode_show, e2procfs_frontend_mode_write, NULL, ""},
+
 	{cProcDir  , "stb/info"                                                         , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/info/model"                                                   , NULL, e2procfs_info_model_show, NULL, NULL, ""},
 	{cProcEntry, "stb/info/boxtype"                                                 , NULL, e2procfs_info_boxtype_show, NULL, NULL, ""},

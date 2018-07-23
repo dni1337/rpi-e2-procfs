@@ -32,9 +32,13 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
 	len += seq_printf(m,
 		"NIM Socket 0:\n"
 		"\tType: DVB-T\n"
-		"\tName: Availink avl6862\n"
-		"\tHas_Outputs: no\n"
+		"\tName: Availink AVL6862\n"
 		"\tFrontend_Device: 0\n"
+		"\tI2C_Device: 1\n"
+		"\tHas_Outputs: yes\n"
+		"\tMode 0: DVB-S\n"
+		"\tMode 1: DVB-T\n"
+		"\tInternally_Connectable: 0\n"
 		);
 
 // 	struct file* fe_fd = NULL;

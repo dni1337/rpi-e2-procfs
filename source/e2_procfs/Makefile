@@ -33,8 +33,8 @@ e2_procfs-y := \
 	e2_procfs_main.o \
 	e2_procfs_progress.o \
 	e2_procfs_vmode.o \
-	e2_procfs_vmpeg.o
-
+	e2_procfs_vmpeg.o \
+	e2_procfs_frontend.o
 obj-m := \
 	e2_procfs.o
 

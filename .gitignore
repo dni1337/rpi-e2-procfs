@@ -1,3 +1,4 @@
+.*
 *.o
 *.o.*
 *.a
@@ -5,3 +6,4 @@
 *Module.symvers
 *.order
 *.mod.c
+!.gitignore

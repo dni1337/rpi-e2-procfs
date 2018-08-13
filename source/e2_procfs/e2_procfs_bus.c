@@ -26,20 +26,35 @@
 
 #define DVB_MAX_FRONTEND 5
 
+
+int e2procfs_nim_sockets_write(struct ProcWriteInfo *proc_info, char *kbuf)
+{
+	int len = 0;
+
+	proc_info->bpage = kbuf;
+
+	return len;
+}
 int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
 {
-	int len=0;
-	len += seq_printf(m,
+	struct ProcWriteInfo *proc_info = m->private;
+	int len = 0;
+	if (proc_info->count > 0)
+	{
+		len = seq_printf(m, "%s\n", proc_info->bpage);
+	}
+	else
+	{
+		len += seq_printf(m,
 		"NIM Socket 0:\n"
-		"\tType: DVB-T\n"
-		"\tName: Availink AVL6862\n"
+		"\tType: DVB-T2\n"
+		"\tName: Availink avl6862\n"
+		"\tHas_Outputs: no\n"
 		"\tFrontend_Device: 0\n"
-		"\tI2C_Device: 1\n"
-		"\tHas_Outputs: yes\n"
-		"\tMode 0: DVB-S\n"
-		"\tMode 1: DVB-T\n"
-		"\tInternally_Connectable: 0\n"
 		);
+	}
+	return len;
+
 
 // 	struct file* fe_fd = NULL;
 // 	int adapter_num = 0, nsocket_index = 0, len = 0;

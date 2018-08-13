@@ -288,5 +288,6 @@ int e2procfs_vmpeg_dstheight_write(struct ProcWriteInfo *proc_info, char *kbuf);
 
 int e2procfs_frontend_mode_show(struct seq_file *m, void* data);
 int e2procfs_frontend_mode_write(struct ProcWriteInfo *proc_info, char *kbuf);
+int e2procfs_nim_sockets_write(struct ProcWriteInfo *proc_info, char *kbuf);
 
 #endif

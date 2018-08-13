@@ -25,7 +25,7 @@ struct ProcStructure_s e2Proc[] =
 {
 	{cProcEntry, "progress"                                                         , NULL, e2procfs_progress_show, e2procfs_progress_write, NULL, ""},
 
-	{cProcEntry, "bus/nim_sockets"                                                  , NULL, e2procfs_nim_sockets_show, NULL, NULL, ""},
+	{cProcEntry, "bus/nim_sockets"                                                  , NULL, e2procfs_nim_sockets_show, e2procfs_nim_sockets_write, NULL, ""},
 	{cProcDir  , "stb"                                                              , NULL, NULL, NULL, NULL, ""},
 	{cProcDir  , "stb/audio"                                                        , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/audio/ac3"                                                    , NULL, NULL, NULL, NULL, ""},

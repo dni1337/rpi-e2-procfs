@@ -1,4 +1,4 @@
-# amlogic-e2-procfs
-Amlogic e2 procfs
+# raspberry-e2-procfs
+Raspberry e2 procfs
 
-More information: https://github.com/PLi-metas/e2proc
+Forked from: https://github.com/PLi-metas/amlogic-e2-procfs

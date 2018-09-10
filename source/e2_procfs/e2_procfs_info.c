@@ -23,21 +23,21 @@
 
 int e2procfs_info_model_show(struct seq_file *m, void* data)
 {
-	int len = seq_printf(m, "wetekplay\n");
+	seq_printf(m, "wetekplay\n");
 
-	return len;
+	return 0;
 }
 
 int e2procfs_info_boxtype_show(struct seq_file *m, void* data)
 {
-	int len = seq_printf(m, "wetek\n");
+	seq_printf(m, "wetek\n");
 
-	return len;
+	return 0;
 }
 
 int e2procfs_info_chipset_show(struct seq_file *m, void* data)
 {
-	int len = seq_printf(m, "Meson-6\n");
+	seq_printf(m, "Meson-6\n");
 
-	return len;
+	return 0;
 }

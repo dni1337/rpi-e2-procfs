@@ -29,23 +29,20 @@
 
 int e2procfs_nim_sockets_write(struct ProcWriteInfo *proc_info, char *kbuf)
 {
-	int len = 0;
-
 	proc_info->bpage = kbuf;
 
-	return len;
+	return 0;
 }
 int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
 {
 	struct ProcWriteInfo *proc_info = m->private;
-	int len = 0;
 	if (proc_info->count > 0)
 	{
-		len = seq_printf(m, "%s\n", proc_info->bpage);
+		seq_printf(m, "%s\n", proc_info->bpage);
 	}
 	else
 	{
-		len += seq_printf(m,
+		seq_printf(m,
 		"NIM Socket 0:\n"
 		"\tType: DVB-T2\n"
 		"\tName: Availink avl6862\n"
@@ -53,11 +50,11 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
 		"\tFrontend_Device: 0\n"
 		);
 	}
-	return len;
+	return 0;
 
 
 // 	struct file* fe_fd = NULL;
-// 	int adapter_num = 0, nsocket_index = 0, len = 0;
+// 	int adapter_num = 0, nsocket_index = 0;
 // 	char devstr[MAX_CHAR_LENGTH];
 // 	struct
 // 	{
@@ -129,7 +126,7 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
 // 							}
 // 						}
 
-// 						len += seq_printf(
+// 						seq_printf(
 // 							m,
 // 								"NIM Socket %d:\n"
 // 								"\tType: %s\n"
@@ -158,5 +155,5 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
 // 		adapter_num++;
 // 	}
 
-	return len;
+	return 0;
 }

@@ -216,14 +216,14 @@ struct proc_dir_entry * find_proc_dir(char * name)
 static int e2procfs_show(struct seq_file *m, void* data)
 {
 	struct ProcWriteInfo *proc_info = m->private;
-	int len = seq_printf(m, "\n");
+	seq_printf(m, "\n");
 	int bytes = 0;
 	char bufferfile[MAX_CHAR_LENGTH];
 
 	bytes = sprintf(bufferfile, "e2procfs_show : proc_info->proc_i = %d\n", proc_info->proc_i);
 	save_data_to_file("/storage/e2procfs_show.txt", O_RDWR | O_CREAT | O_APPEND, bufferfile, bytes);
 
-	return len;
+	return 0;
 }
 
 static int e2procfs_open(struct inode *inode, struct file *file)

@@ -16,8 +16,8 @@
 #  along with OpenELEC.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-PKG_NAME="amlogic-e2-procfs"
-PKG_VERSION="3.10.76"
+PKG_NAME="raspberry-e2-procfs"
+PKG_VERSION="4.00.01"
 PKG_REV="1"
 PKG_ARCH="arm"
 PKG_LICENSE="nonfree"
@@ -27,8 +27,8 @@ PKG_DEPENDS_TARGET="toolchain linux"
 PKG_NEED_UNPACK="$LINUX_DEPENDS"
 PKG_PRIORITY="optional"
 PKG_SECTION="driver"
-PKG_SHORTDESC="Amlogic Enigma2 procfs drivers"
-PKG_LONGDESC="These package contains Amlogic's PROCFS driver"
+PKG_SHORTDESC="Raspberry Enigma2 procfs drivers"
+PKG_LONGDESC="These package contains Raspberry's PROCFS driver"
 PKG_MAINTAINER="SIP-Online (contact@sip-online.fr)"
 
 PKG_IS_ADDON="no"
@@ -55,7 +55,7 @@ make_target() {
 		KSRC=$(kernel_path) \
 		CROSS_COMPILE=$TARGET_PREFIX
 
-	fix_module_depends "e2_procfs.ko" "wetekdvb"
+	fix_module_depends "e2_procfs.ko"
 }
 
 makeinstall_target() {

@@ -45,7 +45,7 @@ struct ProcStructure_s e2Proc[] =
 	{cProcEntry, "stb/info/chipset"                                                 , NULL, e2procfs_info_chipset_show, NULL, NULL, ""},
 
 	{cProcDir  , "stb/video"                                                        , NULL, NULL, NULL, NULL, ""},
-	{cProcEntry, "stb/video/alpha"                                                  , NULL, e2procfs_valpha_show, e2procfs_valpha_write, NULL, ""},
+/*	{cProcEntry, "stb/video/alpha"                                                  , NULL, e2procfs_valpha_show, e2procfs_valpha_write, NULL, ""},
 	{cProcEntry, "stb/video/aspect"                                                 , NULL, e2procfs_vaspect_show, NULL, NULL, ""},
 	{cProcEntry, "stb/video/aspect_choices"                                         , NULL, e2procfs_vachoices_show, NULL, NULL, ""},
 	{cProcEntry, "stb/video/force_dvi"                                              , NULL, NULL, NULL, NULL, ""},
@@ -63,7 +63,7 @@ struct ProcStructure_s e2Proc[] =
 	{cProcEntry, "stb/video/pal_v_end"                                              , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/video/pal_h_start"                                            , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/video/pal_h_end"                                              , NULL, NULL, NULL, NULL, ""},
-
+*/
 	{cProcDir  , "stb/avs"                                                          , NULL, NULL, NULL, NULL, ""},
 	{cProcDir  , "stb/avs/0"                                                        , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/avs/0/colorformat"                                            , NULL, NULL, NULL, NULL, ""},
@@ -79,7 +79,7 @@ struct ProcStructure_s e2Proc[] =
 	{cProcDir  , "stb/denc/0"                                                       , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/denc/0/wss"                                                   , NULL, e2procfs_wss_denc_show, e2procfs_wss_denc_write, NULL, ""},
 	{cProcEntry, "stb/denc/0/wss_choices"                                           , NULL, e2procfs_wssc_denc_show, NULL, NULL, ""},
-
+/*
 	{cProcDir  , "stb/fb"                                                           , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/fb/3dmode"                                                    , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/fb/znorm"                                                     , NULL, NULL, NULL, NULL, ""},
@@ -94,7 +94,7 @@ struct ProcStructure_s e2Proc[] =
 	// {cProcEntry, "stb/fp/wakeup_time"                                               , NULL, e2procfs_fpwut_show, e2procfs_fpwut_write, NULL, ""},
 	// {cProcEntry, "stb/fp/was_timer_wakeup"                                          , NULL, e2procfs_fpwtw_show, e2procfs_fpwtw_write, NULL, ""},
 	// {cProcEntry, "stb/fp/rtc"                                                       , NULL, e2procfs_fprtc_show, e2procfs_fprtc_write, NULL, ""},
-
+*/
 	{cProcDir  , "stb/tsmux"                                                        , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/tsmux/input0"                                                 , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/tsmux/input1"                                                 , NULL, NULL, NULL, NULL, ""},
@@ -194,10 +194,10 @@ struct ProcStructure_s e2Proc[] =
 
 	{cProcDir  , "stb/player"                                                       , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/player/version"                                               , NULL, NULL, NULL, NULL, ""},
-
+/*
 	{cProcDir  , "stb/aml"                                                          , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/aml/videoinfo"                                                , NULL, e2procfs_amlinfo_show, e2procfs_amlinfo_write, NULL, ""},
-	{cProcEntry, "stb/aml/osdinfo"                                                  , NULL, e2procfs_amlosd_show, e2procfs_amlosd_write, NULL, ""}
+	{cProcEntry, "stb/aml/osdinfo"                                                  , NULL, e2procfs_amlosd_show, e2procfs_amlosd_write, NULL, ""} */
 };
 
 struct proc_dir_entry * find_proc_dir(char * name)

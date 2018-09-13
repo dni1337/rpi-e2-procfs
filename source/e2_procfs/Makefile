@@ -27,9 +27,11 @@ e2_procfs-y := \
 	e2_procfs_bus.o \
 	e2_procfs_denc.o \
 	e2_procfs_fileio.o \
+	e2_procfs_fp.o \
 	e2_procfs_info.o \
 	e2_procfs_main.o \
 	e2_procfs_progress.o \
+	e2_procfs_vmode.o \
 	e2_procfs_vmpeg.o \
 	e2_procfs_frontend.o
 obj-m := \

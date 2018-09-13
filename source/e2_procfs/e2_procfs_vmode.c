@@ -20,10 +20,11 @@
  */
 
 #include "e2_procfs.h"
+/*
 #include "display/osd/osd_hw.h"
 #include <linux/amlogic/vout/vinfo.h>
 #include <linux/amlogic/vout/vout_notify.h>
-
+*/
 int e2procfs_valpha_show(struct seq_file *m, void* data)
 {
 	struct ProcWriteInfo *proc_info = m->private;
@@ -39,7 +40,7 @@ int e2procfs_valpha_show(struct seq_file *m, void* data)
 
 	return 0;
 }
-
+/*
 int e2procfs_valpha_write(struct ProcWriteInfo *proc_info, char *kbuf)
 {
 	u32  gbl_alpha;
@@ -111,6 +112,13 @@ int e2procfs_vmode_write(struct ProcWriteInfo *proc_info, char *kbuf)
 
 	return 0;
 }
+*/
+int e2procfs_vmode_show(struct seq_file *m, void* data)
+{
+	seq_printf(m, "720p50\n");
+
+	return 0;
+}
 
 int e2procfs_vchoices50_show(struct seq_file *m, void* data)
 {
@@ -128,14 +136,14 @@ int e2procfs_vchoices60_show(struct seq_file *m, void* data)
 
 int e2procfs_vmode50_show(struct seq_file *m, void* data)
 {
-	seq_printf(m, "1080p50 1080i50 720p50\n");
+	seq_printf(m, "1080p50\n");
 
 	return 0;
 }
 
 int e2procfs_vmode60_show(struct seq_file *m, void* data)
 {
-	seq_printf(m, "1080p60 1080i60 720p60\n");
+	seq_printf(m, "1080p\n");
 
 	return 0;
 }
@@ -160,7 +168,7 @@ int e2procfs_vachoices_show(struct seq_file *m, void* data)
 
 	return 0;
 }
-
+/*
 int e2procfs_vaspect_show(struct seq_file *m, void* data)
 {
 	const struct vinfo_s *vinfo;
@@ -176,7 +184,7 @@ int e2procfs_vaspect_show(struct seq_file *m, void* data)
 
 	return 0;
 }
-
+*/
 int e2procfs_vpreferred_show(struct seq_file *m, void* data)
 {
 	seq_printf(m, "720p 1080i 1080p 720p50 1080i50 1080p50\n");

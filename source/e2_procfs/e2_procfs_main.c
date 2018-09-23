@@ -45,9 +45,8 @@ struct ProcStructure_s e2Proc[] =
 	{cProcEntry, "stb/info/chipset"                                                 , NULL, e2procfs_info_chipset_show, NULL, NULL, ""},
 
 	{cProcDir  , "stb/video"                                                        , NULL, NULL, NULL, NULL, ""},
-/*	{cProcEntry, "stb/video/alpha"                                                  , NULL, e2procfs_valpha_show, e2procfs_valpha_write, NULL, ""},
-	{cProcEntry, "stb/video/aspect"                                                 , NULL, e2procfs_vaspect_show, NULL, NULL, ""}, */
-	{cProcEntry, "stb/video/alpha"                                                  , NULL, e2procfs_valpha_show, NULL, NULL, ""},
+	{cProcEntry, "stb/video/alpha"                                                  , NULL, e2procfs_valpha_show, e2procfs_valpha_write, NULL, ""},
+/*	{cProcEntry, "stb/video/aspect"                                                 , NULL, e2procfs_vaspect_show, NULL, NULL, ""}, */
 	{cProcEntry, "stb/video/aspect"                                                 , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/video/aspect_choices"                                         , NULL, e2procfs_vachoices_show, NULL, NULL, ""},
 	{cProcEntry, "stb/video/force_dvi"                                              , NULL, NULL, NULL, NULL, ""},

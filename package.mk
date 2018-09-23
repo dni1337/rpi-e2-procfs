@@ -17,11 +17,11 @@
 ################################################################################
 
 PKG_NAME="rpi-e2-procfs"
-PKG_VERSION="4.14.70"
+PKG_VERSION="4.14.71"
 PKG_REV="1"
 PKG_ARCH="arm"
 PKG_LICENSE="nonfree"
-PKG_SITE="http://www.sip-online.fr"
+PKG_SITE="https://github.com/PLi-metas"
 PKG_URL=""
 PKG_DEPENDS_TARGET="toolchain linux"
 PKG_NEED_UNPACK="$LINUX_DEPENDS"
@@ -29,7 +29,7 @@ PKG_PRIORITY="optional"
 PKG_SECTION="driver"
 PKG_SHORTDESC="RaspberryPi Enigma2 procfs drivers"
 PKG_LONGDESC="These package contains RaspberryPi's PROCFS driver"
-PKG_MAINTAINER="SIP-Online (contact@sip-online.fr)"
+PKG_MAINTAINER="Persian Prince (persianpros@yahoo.com)"
 
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"

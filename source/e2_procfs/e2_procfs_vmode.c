@@ -20,8 +20,8 @@
  */
 
 #include "e2_procfs.h"
-#include "bcm_host.h"
-/*
+/*#include "bcm_host.h"
+
 #include <linux/amlogic/vout/vinfo.h>
 #include <linux/amlogic/vout/vout_notify.h>
 */
@@ -50,7 +50,7 @@ int e2procfs_valpha_write(struct ProcWriteInfo *proc_info, char *kbuf)
 	if (kstrtouint(kbuf, 0, &gbl_alpha))
 		return -EINVAL;
 
-	VC_DISPMANX_ALPHA_T alpha = { DISPMANX_FLAGS_ALPHA_FROM_SOURCE | DISPMANX_FLAGS_ALPHA_FIXED_ALL_PIXELS, gbl_alpha, 0 };
+//	VC_DISPMANX_ALPHA_T alpha = { DISPMANX_FLAGS_ALPHA_FROM_SOURCE | DISPMANX_FLAGS_ALPHA_FIXED_ALL_PIXELS, gbl_alpha, 0 };
 	
 	return 0;
 }

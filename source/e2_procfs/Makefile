@@ -21,7 +21,7 @@ clean: $(clean_more)
 else
 EXTRA_CFLAGS += -Wenum-compare
 ccflags-y += -D__CHECK_ENDIAN__
-ccflags-y += -I$(srctree)/drivers/media/dvb-core -I$(STAGING_DIR)-components/$(MACHINE)/userland/usr/include
+ccflags-y += -I$(srctree)/drivers/media/dvb-core
 
 e2_procfs-y := \
 	e2_procfs_bus.o \

@@ -20,11 +20,7 @@
  */
 
 #include "e2_procfs.h"
-/*#include "bcm_host.h"
 
-#include <linux/amlogic/vout/vinfo.h>
-#include <linux/amlogic/vout/vout_notify.h>
-*/
 int e2procfs_valpha_show(struct seq_file *m, void* data)
 {
 	struct ProcWriteInfo *proc_info = m->private;
@@ -115,7 +111,21 @@ int e2procfs_vmode_write(struct ProcWriteInfo *proc_info, char *kbuf)
 */
 int e2procfs_vmode_show(struct seq_file *m, void* data)
 {
-	seq_printf(m, "720p50\n");
+	struct ProcWriteInfo *proc_info = m->private;
+
+	if (proc_info->count > 0)
+	{
+		seq_printf(m, "%s", proc_info->bpage);
+	}
+	else
+	{
+		seq_printf(m, "\n");
+	}
+}
+
+int e2procfs_vmode_write(struct ProcWriteInfo *proc_info, char *kbuf)
+{
+	proc_info->bpage = kbuf;
 
 	return 0;
 }
@@ -136,14 +146,42 @@ int e2procfs_vchoices60_show(struct seq_file *m, void* data)
 
 int e2procfs_vmode50_show(struct seq_file *m, void* data)
 {
-	seq_printf(m, "1080p50\n");
+	struct ProcWriteInfo *proc_info = m->private;
+
+	if (proc_info->count > 0)
+	{
+		seq_printf(m, "%s", proc_info->bpage);
+	}
+	else
+	{
+		seq_printf(m, "\n");
+	}
+}
+
+int e2procfs_vmode50_write(struct ProcWriteInfo *proc_info, char *kbuf)
+{
+	proc_info->bpage = kbuf;
 
 	return 0;
 }
 
 int e2procfs_vmode60_show(struct seq_file *m, void* data)
 {
-	seq_printf(m, "1080p\n");
+	struct ProcWriteInfo *proc_info = m->private;
+
+	if (proc_info->count > 0)
+	{
+		seq_printf(m, "%s", proc_info->bpage);
+	}
+	else
+	{
+		seq_printf(m, "\n");
+	}
+}
+
+int e2procfs_vmode60_write(struct ProcWriteInfo *proc_info, char *kbuf)
+{
+	proc_info->bpage = kbuf;
 
 	return 0;
 }
@@ -168,6 +206,7 @@ int e2procfs_vachoices_show(struct seq_file *m, void* data)
 
 	return 0;
 }
+
 /*
 int e2procfs_vaspect_show(struct seq_file *m, void* data)
 {

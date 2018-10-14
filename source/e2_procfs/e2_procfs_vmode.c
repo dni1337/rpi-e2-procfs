@@ -121,6 +121,8 @@ int e2procfs_vmode_show(struct seq_file *m, void* data)
 	{
 		seq_printf(m, "\n");
 	}
+
+	return 0;
 }
 
 int e2procfs_vmode_write(struct ProcWriteInfo *proc_info, char *kbuf)
@@ -156,6 +158,8 @@ int e2procfs_vmode50_show(struct seq_file *m, void* data)
 	{
 		seq_printf(m, "\n");
 	}
+
+	return 0;
 }
 
 int e2procfs_vmode50_write(struct ProcWriteInfo *proc_info, char *kbuf)
@@ -177,6 +181,8 @@ int e2procfs_vmode60_show(struct seq_file *m, void* data)
 	{
 		seq_printf(m, "\n");
 	}
+
+	return 0;
 }
 
 int e2procfs_vmode60_write(struct ProcWriteInfo *proc_info, char *kbuf)

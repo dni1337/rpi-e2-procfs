@@ -50,65 +50,7 @@ int e2procfs_valpha_write(struct ProcWriteInfo *proc_info, char *kbuf)
 	
 	return 0;
 }
-/*
-int e2procfs_vmode_show(struct seq_file *m, void* data)
-{
-	//const vinfo_t *vinfo;
-	struct vinfo_s *vinfo;
 
-	vinfo = get_current_vinfo();
-
-	printk("%s(): get current video mode\n", "e2procfs_vmode_show");
-	printk("\tname\t\t\t\t\t:%s\n", vinfo->name);
-	printk("\tmode\t\t\t\t\t:%d\n", vinfo->mode);
-	printk("\twidth\t\t\t\t\t:%d\n", vinfo->width);
-	printk("\theight\t\t\t\t:%d\n", vinfo->height);
-	printk("\tfield_height\t\t\t:%d\n", vinfo->field_height);
-	printk("\taspect_ratio_num\t\t:%d\n", vinfo->aspect_ratio_num);
-	printk("\taspect_ratio_den\t\t:%d\n", vinfo->aspect_ratio_den);
-	printk("\tsync_duration_num\t\t:%d\n", vinfo->sync_duration_num);
-	printk("\tsync_duration_den\t\t:%d\n", vinfo->sync_duration_den);
-	printk("\tscreen_real_width\t\t:%d\n", vinfo->screen_real_width);
-	printk("\tscreen_real_height\t:%d\n", vinfo->screen_real_height);
-	printk("\tvideo_clk\t\t\t\t:%d\n", vinfo->video_clk);
-
-	seq_printf(m, "%s\n", vinfo->name);
-
-	return 0;
-}
-
-int e2procfs_vmode_write(struct ProcWriteInfo *proc_info, char *kbuf)
-{
-	int ret;
-	//vmode_t mode;
-	enum vmode_e mode;
-
-	proc_info->bpage = kbuf;
-
-	ret = strlen(kbuf);
-    if (ret > 5)
-    {
-	//	*(_WORD *)(&s + v6) = *(_WORD *)"hz";
-	//	*(&s + v6 + 2) = LC0_2[2];
-	}
-
-	mode = validate_vmode(kbuf);
-
-	if (mode == VMODE_MAX)
-	{
-		printk("No valid mode given!\n");
-		return -EFAULT;
-	}
-	else if (mode != get_current_vmode())
-	{
-		msleep(500);
-		set_current_vmode(mode);
-		printk(kbuf);
-	}
-
-	return 0;
-}
-*/
 int e2procfs_vmode_show(struct seq_file *m, void* data)
 {
 	struct ProcWriteInfo *proc_info = m->private;

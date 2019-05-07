@@ -36,8 +36,7 @@ struct ProcStructure_s e2Proc[] =
 	{cProcEntry, "stb/audio/dts"                                                    , NULL, e2procfs_dts_show, e2procfs_dts_write, NULL, ""},
 	{cProcEntry, "stb/audio/dts_choices"                                            , NULL, e2procfs_dtschoices_show, NULL, NULL, ""},
 
-
-	{cProcDir  , "stb/frontend" 		                                            , NULL, NULL, NULL, NULL, ""},
+	{cProcDir  , "stb/frontend" 		                                        , NULL, NULL, NULL, NULL, ""},
 	{cProcDir  , "stb/frontend/0"                                                   , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/frontend/0/mode"                                              , NULL, e2procfs_frontend_mode_show, e2procfs_frontend_mode_write, NULL, ""},
 
@@ -48,13 +47,11 @@ struct ProcStructure_s e2Proc[] =
 
 	{cProcDir  , "stb/video"                                                        , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/video/alpha"                                                  , NULL, e2procfs_valpha_show, e2procfs_valpha_write, NULL, ""},
-/*	{cProcEntry, "stb/video/aspect"                                                 , NULL, e2procfs_vaspect_show, NULL, NULL, ""}, */
 	{cProcEntry, "stb/video/aspect"                                                 , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/video/aspect_choices"                                         , NULL, e2procfs_vachoices_show, NULL, NULL, ""},
 	{cProcEntry, "stb/video/force_dvi"                                              , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/video/policy"                                                 , NULL, e2procfs_vpolicy_show, NULL, NULL, ""},
 	{cProcEntry, "stb/video/policy_choices"                                         , NULL, e2procfs_vpchoices_show, NULL, NULL, ""},
-/*	{cProcEntry, "stb/video/videomode"                                              , NULL, e2procfs_vmode_show, e2procfs_vmode_write, NULL, ""}, */
 	{cProcEntry, "stb/video/videomode"                                              , NULL, e2procfs_vmode_show, e2procfs_vmode_write, NULL, ""},
 	{cProcEntry, "stb/video/3d_mode"                                                , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/video/videomode_50hz"                                         , NULL, e2procfs_vmode50_show, e2procfs_vmode50_write, NULL, ""},
@@ -167,6 +164,7 @@ struct ProcStructure_s e2Proc[] =
 	{cProcEntry, "stb/video/plane/psi_contrast"                                     , NULL, NULL, NULL, NULL, "psi_contrast"},
 	{cProcEntry, "stb/video/plane/psi_tint"                                         , NULL, NULL, NULL, NULL, "psi_tint"},
 	{cProcEntry, "stb/video/plane/psi_apply"                                        , NULL, NULL, NULL, NULL, "psi_apply"},
+/*
 #if defined(UFS912) || defined(UFS913) || defined(ATEVIO7500) || defined(HS7110) || defined(ATEMIO520) || defined(ATEMIO530) || defined(HS7810A) || defined(SPARK) || defined(SPARK7162)
 	{cProcDir  , "stb/cec"                                                          , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/cec/state_activesource"                                       , NULL, NULL, NULL, NULL, ""},
@@ -177,17 +175,15 @@ struct ProcStructure_s e2Proc[] =
 	{cProcEntry, "stb/cec/event_poll"                                               , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/cec/send"                                                     , NULL, NULL, NULL, NULL, ""},
 #endif
-
 #if defined(UFS922) || defined(UFC960)
-/* dagobert: the dei settings can be used for all 7109 architectures to affec the de-interlacer */
+// dagobert: the dei settings can be used for all 7109 architectures to affec the de-interlacer
 	{cProcEntry, "stb/video/plane/dei_fmd"                                          , NULL, NULL, NULL, NULL, "dei_fmd"},
 	{cProcEntry, "stb/video/plane/dei_mode"                                         , NULL, NULL, NULL, NULL, "dei_mode"},
 	{cProcEntry, "stb/video/plane/dei_ctrl"                                         , NULL, NULL, NULL, NULL, "dei_ctrl"},
 	{cProcDir  , "stb/fan"                                                          , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/fan/fan_ctrl"                                                 , NULL, NULL, NULL, NULL, ""},
 #endif
-
-#ifdef ADB_BOX
+#if defined(ADB_BOX)
 	{cProcDir  , "stb/fan"                                                          , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/hdmi/cec"                                                     , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/fan/fan_ctrl"                                                 , NULL, NULL, NULL, NULL, ""},
@@ -195,13 +191,9 @@ struct ProcStructure_s e2Proc[] =
 	{cProcEntry, "stb/video/switch"                                                 , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/video/switch_choices"                                         , NULL, NULL, NULL, NULL, ""},
 #endif
-
+*/
 	{cProcDir  , "stb/player"                                                       , NULL, NULL, NULL, NULL, ""},
-	{cProcEntry, "stb/player/version"                                               , NULL, NULL, NULL, NULL, ""},
-/*
-	{cProcDir  , "stb/aml"                                                          , NULL, NULL, NULL, NULL, ""},
-	{cProcEntry, "stb/aml/videoinfo"                                                , NULL, e2procfs_amlinfo_show, e2procfs_amlinfo_write, NULL, ""},
-	{cProcEntry, "stb/aml/osdinfo"                                                  , NULL, e2procfs_amlosd_show, e2procfs_amlosd_write, NULL, ""} */
+	{cProcEntry, "stb/player/version"                                               , NULL, NULL, NULL, NULL, ""}
 };
 
 struct proc_dir_entry * find_proc_dir(char * name)

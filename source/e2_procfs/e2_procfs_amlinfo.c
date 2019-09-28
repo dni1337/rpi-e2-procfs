@@ -89,13 +89,13 @@ int e2procfs_amlosd_show(struct seq_file *m, void* data)
 
 	osd_get_free_scale_enable_hw(0, &free_scale_enable);
 	osd_get_free_scale_mode_hw(0, &free_scale_mode);
-	seq_printf(m, "osddev_get_free_scale_enable:%d\n", free_scale_enable);
-	seq_printf(m, "osddev_get_free_scale_mode:%d\n", free_scale_mode);
+	seq_printf(m, "osd_get_free_scale_enable:%d\n", free_scale_enable);
+	seq_printf(m, "osd_get_free_scale_mode:%d\n", free_scale_mode);
 
 	osd_get_free_scale_width_hw(0, &free_scale_width);
 	osd_get_free_scale_height_hw(0, &free_scale_height);
-	seq_printf(m, "osddev_get_free_scale_width:%d\n", free_scale_width);
-	seq_printf(m, "osddev_get_free_scale_height:%d\n", free_scale_height);
+	seq_printf(m, "osd_get_free_scale_width:%d\n", free_scale_width);
+	seq_printf(m, "osd_get_free_scale_height:%d\n", free_scale_height);
 
 	osd_get_free_scale_axis_hw(0, &x, &y, &w, &h);
 	seq_printf(m, "free_scale_axis:%d %d %d %d\n", x, y, w, h);
@@ -121,7 +121,7 @@ int e2procfs_amlosd_write(struct ProcWriteInfo *proc_info, char *kbuf)
 
 	proc_info->bpage = kbuf;
 
-	printk("amlinfo-write alpha: ws=%s", kbuf);
+	printk("write alpha: ws=%s", kbuf);
 
 	if (kstrtouint(kbuf, 0, &gbl_alpha))
 		return -EINVAL;

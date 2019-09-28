@@ -76,14 +76,14 @@ int e2procfs_vmode_write(struct ProcWriteInfo *proc_info, char *kbuf)
 
 int e2procfs_vchoices50_show(struct seq_file *m, void* data)
 {
-	seq_printf(m, "720p50 720p 1080i 1080i50 1080p 1080p50\n");
+	seq_printf(m, "576i 576p 720p50 1080i50 1080p50\n");
 
 	return 0;
 }
 
 int e2procfs_vchoices60_show(struct seq_file *m, void* data)
 {
-	seq_printf(m, "720p60 720p 1080i 1080i60 1080p 1080p60\n");
+	seq_printf(m, "480i 480p 720p 1080i 1080p\n");
 
 	return 0;
 }
@@ -174,14 +174,14 @@ int e2procfs_vaspect_show(struct seq_file *m, void* data)
 */
 int e2procfs_vpreferred_show(struct seq_file *m, void* data)
 {
-	seq_printf(m, "720p 1080i 1080p 720p50 1080i50 1080p50\n");
+	seq_printf(m, "576i 576p 720p50 1080i50 1080p50\n");
 
 	return 0;
 }
 
 int e2procfs_vchoices_show(struct seq_file *m, void* data)
 {
-	seq_printf(m, "720p 1080i 1080p 720p50 1080i50 1080p50\n");
+	seq_printf(m, "576i 576p 720p50 1080i50 1080p50\n");
 
 	return 0;
 }

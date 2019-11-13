@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="rpi-e2-procfs"
-PKG_VERSION="4.19.81"
+PKG_VERSION="4.19.83"
 PKG_REV="1"
 PKG_ARCH="arm"
 PKG_LICENSE="nonfree"

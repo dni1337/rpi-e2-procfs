@@ -91,7 +91,7 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
  						if (dvb_generic_ioctl(fe_fd, FE_GET_INFO, 0))
  						{
 							printk("procfs debug 4\n");
- 							dvbdev->kernel_ioctl(fe_fd, FE_GET_INFO, &fe_info);
+ 							//dvbdev->kernel_ioctl(fe_fd, FE_GET_INFO, &fe_info);
 							printk("procfs debug 5\n");
  							if (dvb_generic_ioctl(fe_fd, FE_GET_PROPERTY, 0))
  							{
@@ -100,7 +100,7 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
  	 							printk("procfs debug 7\n");
 
 /* 	2nd generation DVB Tuner detected adding 2 to the TunerType */
-								if ( (fe_info.caps & FE_CAN_2G_MODULATION ) == FE_CAN_2G_MODULATION )
+								/*if ( (fe_info.caps & FE_CAN_2G_MODULATION ) == FE_CAN_2G_MODULATION )
 								{
 									printk("procfs debug 8\n");
  									seq_printf(m,
@@ -118,22 +118,24 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
  									frontend_num
  									);
 		 						}	
-								else	{
+								else	{*/
 									seq_printf(m,
 	 								"NIM Socket %d:\n"
- 									"\tType: %s\n"
-	 								"\tName: %s\n"
+ 									//"\tType: %s\n"
+	 								//"\tName: %s\n"
+ 									"\tType: DVB-S2\n"
+	 								"\tName: S2-4600\n"
  									"\tHas_Outputs: no\n"
  								//	"\tInternally_Connectable: 0\n"
  									"\tFrontend_Device: %d\n"
  								//	"\tI2C_Device: -1\n"
  									,
 	 								nsocket_index,
- 									DVBTunerType[fe_info.type],
- 									fe_info.name,
+ 									//DVBTunerType[fe_info.type],
+ 									//fe_info.name,
  									frontend_num
  									);
-								}
+								//}
 	
 								nsocket_index++; 					
  							}

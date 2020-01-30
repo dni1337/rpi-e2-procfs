@@ -96,7 +96,7 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
  							if (dvb_generic_ioctl(fe_fd, FE_GET_PROPERTY, 0))
  							{
 								printk("procfs debug 6\n");
- 								dvbdev->kernel_ioctl(fe_fd, FE_GET_PROPERTY, &cmdseq);
+ 								//dvbdev->kernel_ioctl(fe_fd, FE_GET_PROPERTY, &cmdseq);
  	 							printk("procfs debug 7\n");
 
 /* 	2nd generation DVB Tuner detected adding 2 to the TunerType */

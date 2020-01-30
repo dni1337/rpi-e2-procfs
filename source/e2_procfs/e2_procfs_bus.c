@@ -116,7 +116,7 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
 	 								"NIM Socket %d:\n"
  									//"\tType: %s\n"
 	 								//"\tName: %s\n"
- 									"\tType: DVB\n"
+ 									"\tType: DVB-S2\n"
 	 								"\tName: USB Tuner\n"
  									"\tHas_Outputs: no\n"
  								//	"\tInternally_Connectable: 0\n"

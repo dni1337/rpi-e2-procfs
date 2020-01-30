@@ -76,9 +76,7 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
 	 			while (frontend_num < DVB_MAX_FRONTEND)
  				{
  					int bytes = 0;
-					printk("procfs debug 1\n");
  					bytes = sprintf(devstr, "/dev/dvb/adapter%d/frontend%d", adapter_num, frontend_num);
-					printk("procfs debug 2\n");
  					fe_fd = file_open(devstr, O_RDONLY, bytes);
 
  					if (fe_fd != NULL)
@@ -87,17 +85,12 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
  						struct dvb_frontend_info fe_info;
  						struct dtv_property p[] = {{ .cmd = DTV_DELIVERY_SYSTEM }};
  						struct dtv_properties cmdseq = { .num = 1, .props = p };
-						printk("procfs debug 3\n");
  						if (dvb_generic_ioctl(fe_fd, FE_GET_INFO, 0))
  						{
-							printk("procfs debug 4\n");
  							//dvbdev->kernel_ioctl(fe_fd, FE_GET_INFO, &fe_info);
-							printk("procfs debug 5\n");
  							if (dvb_generic_ioctl(fe_fd, FE_GET_PROPERTY, 0))
  							{
-								printk("procfs debug 6\n");
  								//dvbdev->kernel_ioctl(fe_fd, FE_GET_PROPERTY, &cmdseq);
- 	 							printk("procfs debug 7\n");
 
 /* 	2nd generation DVB Tuner detected adding 2 to the TunerType */
 								/*if ( (fe_info.caps & FE_CAN_2G_MODULATION ) == FE_CAN_2G_MODULATION )
@@ -123,8 +116,8 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
 	 								"NIM Socket %d:\n"
  									//"\tType: %s\n"
 	 								//"\tName: %s\n"
- 									"\tType: DVB-S2\n"
-	 								"\tName: S2-4600\n"
+ 									"\tType: DVB\n"
+	 								"\tName: USB Tuner\n"
  									"\tHas_Outputs: no\n"
  								//	"\tInternally_Connectable: 0\n"
  									"\tFrontend_Device: %d\n"

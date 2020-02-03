@@ -88,7 +88,7 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
  						if (dvb_generic_ioctl(fe_fd, FE_GET_INFO, 0))
  						{
  							//dvbdev->kernel_ioctl(fe_fd, FE_GET_INFO, &fe_info);
- 							if (dvb_generic_ioctl(fe_fd, FE_GET_FRONTEND, 0))
+ 							if (dvb_generic_ioctl(fe_fd, FE_GET_PROPERTY, 0))
  							{
  								//dvbdev->kernel_ioctl(fe_fd, FE_GET_FRONTEND, &cmdseq);
 

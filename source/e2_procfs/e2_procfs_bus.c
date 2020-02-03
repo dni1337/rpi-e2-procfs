@@ -90,7 +90,7 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
  							dvbdev->kernel_ioctl(fe_fd, FE_GET_INFO, &fe_info);
  							if (dvb_generic_ioctl(fe_fd, FE_GET_PROPERTY, 0))
  							{
- 								dvbdev->kernel_ioctl(fe_fd, FE_GET_FRONTEND, &cmdseq);
+ 								dvbdev->kernel_ioctl(fe_fd, FE_GET_PROPERTY, &cmdseq);
 
 /* 	2nd generation DVB Tuner detected adding 2 to the TunerType */
 								if ( (fe_info.caps & FE_CAN_2G_MODULATION ) == FE_CAN_2G_MODULATION )

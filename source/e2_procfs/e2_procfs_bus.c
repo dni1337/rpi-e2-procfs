@@ -24,6 +24,13 @@
 #include <linux/dvb/frontend.h>
 #include <media/dvbdev.h>
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/ioctl.h>
+#include <fcntl.h>
+#include <string.h>
+#include <poll.h>
+
 #define DVB_MAX_FRONTEND 8
 
 

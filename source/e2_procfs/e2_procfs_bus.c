@@ -111,7 +111,7 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
  									frontend_num
  									);
 		 						}	
-								else	{*/
+								else	{
 									seq_printf(m,
 	 								"NIM Socket %d:\n"
  									"\tType: %s\n"

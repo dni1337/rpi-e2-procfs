@@ -55,7 +55,7 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
 	else
 	{
  		struct file* fe_fd = NULL;
- 		int adapter_num = 0, nsocket_index = 0;
+ 		int adapter_num = 1, nsocket_index = 0;
  		char devstr[MAX_CHAR_LENGTH];
 
 /*	User Space nim_socket  (not enabled by default) */
@@ -71,7 +71,7 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
 		else	{
  			while (adapter_num < DVB_MAX_ADAPTERS)
  			{
- 				int frontend_num = 1;
+ 				int frontend_num = 0;
 
 	 			while (frontend_num < DVB_MAX_FRONTEND)
  				{

@@ -24,8 +24,6 @@
 #include <linux/dvb/frontend.h>
 #include <media/dvbdev.h>
 
-#include "../../../recipe-sysroot/usr/include/linux/fcntl.h"
-
 #define DVB_MAX_FRONTEND 8
 
 
@@ -80,7 +78,7 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
  					int bytes = 0;
  					bytes = sprintf(devstr, "/dev/dvb/adapter%d/frontend%d", adapter_num, frontend_num);
  					//fe_fd = file_open(devstr, O_RDWR, bytes);
-					fe_fd = open(devstr, O_RDWR);
+					fe_fd = file_open(devstr, O_RDWR, bytes*10);
 
  					if (fe_fd != NULL)
  					{

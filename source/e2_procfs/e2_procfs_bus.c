@@ -24,7 +24,8 @@
 #include <linux/dvb/frontend.h>
 #include <media/dvbdev.h>
 
-#include <linux/fcntl.h>
+#include <fcntl.h>
+#include <sys/ioctl.h>
 
 #define DVB_MAX_FRONTEND 8
 
@@ -79,21 +80,21 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
  				{
  					int bytes = 0;
  					bytes = sprintf(devstr, "/dev/dvb/adapter%d/frontend%d", adapter_num, frontend_num);
- 					//fe_fd = file_open(devstr, O_RDONLY, bytes);
+ 					fe_fd = file_open(devstr, O_RDONLY, bytes);
 					front = open(devstr, O_RDONLY);
 
  					if (front != NULL)
  					{
- 						//struct dvb_device *dvbdev = fe_fd->private_data;
+ 						struct dvb_device *dvbdev_fd = fe_fd->private_data;
  						struct dvb_frontend_info fe_info;
  						struct dtv_property p[] = {{ .cmd = DTV_DELIVERY_SYSTEM }};
  						struct dtv_properties cmdseq = { .num = 1, .props = p };
- 						//if (dvb_generic_ioctl(fe_fd, FE_GET_INFO, 0))
- 						//{
- 							//dvbdev->kernel_ioctl(fe_fd, FE_GET_INFO, &fe_info);
+ 						if (dvb_generic_ioctl(fe_fd, FE_GET_INFO, 0))
+ 						{
+ 							fe_info = dvbdev_fd->kernel_ioctl(fe_fd, FE_GET_INFO, 0);
  							//if (dvb_generic_ioctl(fe_fd, FE_GET_PROPERTY, 0))
  							//{
-								ioctl(front, FE_GET_INFO, &fe_info);
+								//ioctl(front, FE_GET_INFO, &fe_info);
 								//ioctl(fe, FE_GET_FRONTEND, &fe_frontend):
  								//dvbdev->kernel_ioctl(fe_fd, FE_GET_PROPERTY, &cmdseq);
 

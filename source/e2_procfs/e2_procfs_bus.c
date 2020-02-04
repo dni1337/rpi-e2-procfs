@@ -86,11 +86,14 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
  						struct dtv_property p[] = {{ .cmd = DTV_DELIVERY_SYSTEM }};
  						struct dtv_properties cmdseq = { .num = 1, .props = p };
 
-						printk("dvb_hello: %i", dvb_generic_ioctl(fe_fd, FE_GET_INFO, *dvbdev));
+						dvb_usercopy(fe_fd, FE_GET_INFO, NULL,
+                 						dvb_generic_ioctl(fe_fd, FE_GET_INFO, &fe_info));
+						
+						//printk("dvb_hello: %i", dvb_generic_ioctl(fe_fd, FE_GET_INFO, *dvbdev));
 						
  						//if (dvb_generic_ioctl(fe_fd, FE_GET_INFO, 0))
  						//{
- 							dvbdev->kernel_ioctl(fe_fd, FE_GET_INFO, &fe_info);
+ 							//dvbdev->kernel_ioctl(fe_fd, FE_GET_INFO, &fe_info);
  							//if (dvb_generic_ioctl(fe_fd, FE_GET_PROPERTY, 0))
  							//{
 								//ioctl(front, FE_GET_INFO, &fe_info);
@@ -119,18 +122,18 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
 								else	{
 									seq_printf(m,
 	 								"NIM Socket %d:\n"
- 									//"\tType: %s\n"
-	 								//"\tName: %s\n"
- 									"\tType: DVB-S2\n"
-	 								"\tName: USB Tuner\n"
+ 									"\tType: %s\n"
+	 								"\tName: %s\n"
+ 									//"\tType: DVB-S2\n"
+	 								//"\tName: USB Tuner\n"
  									"\tHas_Outputs: no\n"
  								//	"\tInternally_Connectable: 0\n"
  									"\tFrontend_Device: %d\n"
  								//	"\tI2C_Device: -1\n"
  									,
 	 								nsocket_index,
- 									//DVBTunerType[fe_info.type],
- 									//fe_info.name,
+ 									DVBTunerType[fe_info.type],
+ 									fe_info.name,
  									frontend_num
  									);
 								}
@@ -142,7 +145,7 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
 
  					frontend_num++;
 
- 					//file_close(fe_fd);
+ 					file_close(fe_fd);
 					
  				}
 

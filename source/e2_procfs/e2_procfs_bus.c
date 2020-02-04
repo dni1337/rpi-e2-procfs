@@ -24,6 +24,8 @@
 #include <linux/dvb/frontend.h>
 #include <media/dvbdev.h>
 
+#include <fcntl.h>
+
 #define DVB_MAX_FRONTEND 8
 
 
@@ -55,7 +57,7 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
 	else
 	{
  		struct file* fe_fd = NULL;
- 		int adapter_num = 0, nsocket_index = 0;
+ 		int adapter_num = 0, nsocket_index = 0, front = NULL;
  		char devstr[MAX_CHAR_LENGTH];
 
 /*	User Space nim_socket  (not enabled by default) */
@@ -77,21 +79,23 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
  				{
  					int bytes = 0;
  					bytes = sprintf(devstr, "/dev/dvb/adapter%d/frontend%d", adapter_num, frontend_num);
- 					//fe_fd = file_open(devstr, O_RDWR, bytes);
-					fe_fd = file_open(devstr, O_RDWR, bytes*10);
+ 					//fe_fd = file_open(devstr, O_RDONLY, bytes);
+					front = open(devstr, O_RDONLY);
 
- 					if (fe_fd != NULL)
+ 					if (front != NULL)
  					{
- 						struct dvb_device *dvbdev = fe_fd->private_data;
+ 						//struct dvb_device *dvbdev = fe_fd->private_data;
  						struct dvb_frontend_info fe_info;
  						struct dtv_property p[] = {{ .cmd = DTV_DELIVERY_SYSTEM }};
  						struct dtv_properties cmdseq = { .num = 1, .props = p };
- 						if (dvb_generic_ioctl(fe_fd, FE_GET_INFO, 0))
- 						{
- 							dvbdev->kernel_ioctl(fe_fd, FE_GET_INFO, &fe_info);
- 							if (dvb_generic_ioctl(fe_fd, FE_GET_PROPERTY, 0))
- 							{
- 								dvbdev->kernel_ioctl(fe_fd, FE_GET_PROPERTY, &cmdseq);
+ 						//if (dvb_generic_ioctl(fe_fd, FE_GET_INFO, 0))
+ 						//{
+ 							//dvbdev->kernel_ioctl(fe_fd, FE_GET_INFO, &fe_info);
+ 							//if (dvb_generic_ioctl(fe_fd, FE_GET_PROPERTY, 0))
+ 							//{
+								ioctl(fe, FE_GET_INFO, &fe_info):
+								//ioctl(fe, FE_GET_FRONTEND, &fe_frontend):
+ 								//dvbdev->kernel_ioctl(fe_fd, FE_GET_PROPERTY, &cmdseq);
 
 /* 	2nd generation DVB Tuner detected adding 2 to the TunerType */
 								if ( (fe_info.caps & FE_CAN_2G_MODULATION ) == FE_CAN_2G_MODULATION )
@@ -132,13 +136,14 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
 								}
 	
 								nsocket_index++; 					
- 							}
- 						}
+ 							//}
+ 						//}
 					}
 
  					frontend_num++;
 
- 					file_close(fe_fd);
+ 					//file_close(fe_fd);
+					
  				}
 
  				adapter_num++;

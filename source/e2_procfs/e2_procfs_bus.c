@@ -55,7 +55,7 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
 	else
 	{
  		struct file* fe_fd = NULL;
- 		int adapter_num = 0, nsocket_index = 0, front = NULL;
+ 		int adapter_num = 1, nsocket_index = 0, front = NULL;
  		char devstr[MAX_CHAR_LENGTH];
 
 /*	User Space nim_socket  (not enabled by default) */
@@ -86,7 +86,7 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
  						struct dtv_property p[] = {{ .cmd = DTV_DELIVERY_SYSTEM }};
  						struct dtv_properties cmdseq = { .num = 1, .props = p };
 						
-						printk("dvb_hello: %i", dvb_generic_ioctl(fe_fd, FE_GET_INFO, 0));
+						printk("dvb_hello: %f", dvb_generic_ioctl(fe_fd, FE_GET_INFO, 0));
 						
  						//if (dvb_generic_ioctl(fe_fd, FE_GET_INFO, 0))
  						//{

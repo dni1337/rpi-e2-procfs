@@ -85,10 +85,12 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
  						struct dvb_frontend_info fe_info;
  						struct dtv_property p[] = {{ .cmd = DTV_DELIVERY_SYSTEM }};
  						struct dtv_properties cmdseq = { .num = 1, .props = p };
+						
 						printk("dvb_hello: %i", dvb_generic_ioctl(fe_fd, FE_GET_INFO, 0));
- 						if (dvb_generic_ioctl(fe_fd, FE_GET_INFO, 0))
- 						{
- 							dvbdev->kernel_ioctl(fe_fd, FE_GET_INFO, &fe_info);
+						
+ 						//if (dvb_generic_ioctl(fe_fd, FE_GET_INFO, 0))
+ 						//{
+ 							//dvbdev->kernel_ioctl(fe_fd, FE_GET_INFO, &fe_info);
  							//if (dvb_generic_ioctl(fe_fd, FE_GET_PROPERTY, 0))
  							//{
 								//ioctl(front, FE_GET_INFO, &fe_info);
@@ -135,7 +137,7 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
 	
 								nsocket_index++; 					
  							//}
- 						}
+ 						//}
 					}
 
  					frontend_num++;

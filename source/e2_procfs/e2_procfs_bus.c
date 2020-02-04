@@ -24,7 +24,7 @@
 #include <linux/dvb/frontend.h>
 #include <media/dvbdev.h>
 
-#include "../../../recipe-sysroot/usr/include/fcntl.h"
+#include "linux/fcntl.h"
 
 #define DVB_MAX_FRONTEND 8
 
@@ -93,7 +93,7 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
  							//dvbdev->kernel_ioctl(fe_fd, FE_GET_INFO, &fe_info);
  							//if (dvb_generic_ioctl(fe_fd, FE_GET_PROPERTY, 0))
  							//{
-								ioctl(fe, FE_GET_INFO, &fe_info):
+								ioctl(fe, FE_GET_INFO, &fe_info);
 								//ioctl(fe, FE_GET_FRONTEND, &fe_frontend):
  								//dvbdev->kernel_ioctl(fe_fd, FE_GET_PROPERTY, &cmdseq);
 

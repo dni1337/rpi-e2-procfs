@@ -86,7 +86,7 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
  						struct dtv_property p[] = {{ .cmd = DTV_DELIVERY_SYSTEM }};
  						struct dtv_properties cmdseq = { .num = 1, .props = p };
 						printk("dvb_fe_info: %i", FE_GET_INFO);
-						printk("dvb_hello: %ld", dvb_generic_ioctl(fe_fd, FE_GET_INFO, 0));
+						printk("dvb_hello: %i", dvb_generic_ioctl(fe_fd, 61, 0));
 						
  						//if (dvb_generic_ioctl(fe_fd, FE_GET_INFO, 0))
  						//{

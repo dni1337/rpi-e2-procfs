@@ -85,20 +85,22 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
  						struct dvb_frontend_info fe_info;
  						struct dtv_property p[] = {{ .cmd = DTV_DELIVERY_SYSTEM }};
  						struct dtv_properties cmdseq = { .num = 1, .props = p };
-		
-						printk("dvb_hello: %i", dvb_generic_ioctl(fe_fd, FE_GET_INFO, 0));
 						
- 						//if (dvb_generic_ioctl(fe_fd, FE_GET_INFO, 0))
- 						//{
- 							//dvbdev->kernel_ioctl(fe_fd, FE_GET_INFO, &fe_info);
- 							//if (dvb_generic_ioctl(fe_fd, FE_GET_PROPERTY, 0))
- 							//{
+						fe_info.caps = FE_CAN_2G_MODULATION;
+						fe_info.type = TunerType_S;
+						sprintf(fe_info.name, "USB Tuner %i", adapter_num);
+						
+ 						if (dvb_generic_ioctl(fe_fd, FE_GET_INFO, 0) == 0)
+ 						{
+ 							dvbdev->kernel_ioctl(fe_fd, FE_GET_INFO, &fe_info);
+ 							if (dvb_generic_ioctl(fe_fd, FE_GET_PROPERTY, 0) == 0)
+ 							{
 								//ioctl(front, FE_GET_INFO, &fe_info);
 								//ioctl(fe, FE_GET_FRONTEND, &fe_frontend):
- 								//dvbdev->kernel_ioctl(fe_fd, FE_GET_PROPERTY, &cmdseq);
+ 								dvbdev->kernel_ioctl(fe_fd, FE_GET_PROPERTY, &cmdseq);
 
 /* 	2nd generation DVB Tuner detected adding 2 to the TunerType */
-								/*if ( (fe_info.caps & FE_CAN_2G_MODULATION ) == FE_CAN_2G_MODULATION )
+								if ( (fe_info.caps & FE_CAN_2G_MODULATION ) == FE_CAN_2G_MODULATION )
 								{
 									printk("procfs debug 8\n");
  									seq_printf(m,
@@ -116,28 +118,28 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
  									frontend_num
  									);
 		 						}	
-								else	{*/
+								else	{
 									seq_printf(m,
 	 								"NIM Socket %d:\n"
- 									//"\tType: %s\n"
-	 								//"\tName: %s\n"
- 									"\tType: DVB-S2\n"
-	 								"\tName: USB Tuner\n"
+ 									"\tType: %s\n"
+	 								"\tName: %s\n"
+ 									//"\tType: DVB-S2\n"
+	 								//"\tName: USB Tuner\n"
  									"\tHas_Outputs: no\n"
  								//	"\tInternally_Connectable: 0\n"
  									"\tFrontend_Device: %d\n"
  								//	"\tI2C_Device: -1\n"
  									,
 	 								nsocket_index,
- 									//DVBTunerType[fe_info.type],
- 									//fe_info.name,
+ 									DVBTunerType[fe_info.type],
+ 									fe_info.name,
  									frontend_num
  									);
-								//}
+								}
 	
 								nsocket_index++; 					
- 							//}
- 						//}
+ 							}
+ 						}
 					}
 
  					frontend_num++;

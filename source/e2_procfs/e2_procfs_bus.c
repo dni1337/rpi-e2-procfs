@@ -86,6 +86,7 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
  						struct dtv_property p[] = {{ .cmd = DTV_DELIVERY_SYSTEM }};
  						struct dtv_properties cmdseq = { .num = 1, .props = p };
 						
+						/*
 						fe_info.caps = FE_CAN_2G_MODULATION;
 						fe_info.type = TunerType_S;
 						sprintf(fe_info.name, "USB Tuner %i", adapter_num);
@@ -138,8 +139,8 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
 								//}
 	
 								nsocket_index++; 					
- 							}
- 						}
+ 							/*}
+ 						/*}
 					}
 
  					frontend_num++;

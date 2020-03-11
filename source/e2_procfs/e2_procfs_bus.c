@@ -139,8 +139,8 @@ int e2procfs_nim_sockets_show(struct seq_file *m, void* data)
 								//}
 	
 								nsocket_index++; 					
- 							/*}
- 						/*}
+ 							//}
+ 						//}
 					}
 
  					frontend_num++;
